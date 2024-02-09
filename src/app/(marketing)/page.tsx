@@ -1,7 +1,7 @@
 import { Button } from 'antd'
 import React from 'react'
 
-const Home = () => {
+const LandingPage = () => {
   return (
     <div>
         <Button type='primary'>Click</Button>
@@ -9,4 +9,4 @@ const Home = () => {
   )
 }
 
-export default Home
+export default LandingPage
