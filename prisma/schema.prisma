@@ -1,0 +1,103 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+// User Table
+model User {
+  id             Int       @id @default(autoincrement())
+  companyID      Int       @map("company_id")
+  departmentID   Int       @map("department_id")
+  role           String
+  username       String
+  password       String
+  email          String    @unique
+  profileImage   String    @map("profile_image")
+  contactNumber  String    @map("contact_number")
+  dateOfBirth    DateTime  @map("date_of_birth")
+  address        String
+  joiningDate    DateTime  @map("joining_date")
+  lastLogin      DateTime  @map("last_login")
+  status         String
+  // Additional fields...
+}
+
+// Company Table
+model Company {
+  id             Int       @id @default(autoincrement())
+  name           String
+  registration   String
+  address        String
+  industryType   String    @map("industry_type")
+  companySize    String    @map("company_size")
+  ceoName        String    @map("ceo_name")
+  contactEmail   String    @map("contact_email")
+  contactNumber  String    @map("contact_number")
+  websiteURL     String    @map("website_url")
+  // Additional fields...
+}
+
+// Department Table
+model Department {
+  id             Int       @id @default(autoincrement())
+  companyID      Int       @map("company_id")
+  name           String
+  hodUserID      Int       @map("hod_user_id")
+  description    String
+  // Additional fields...
+}
+
+// Post Table
+model Post {
+  id             Int       @id @default(autoincrement())
+  userID         Int       @map("user_id")
+  title          String
+  imageURL       String    @map("image_url")
+  description    String
+  timestamp      DateTime
+  likesCount     Int       @map("likes_count")
+  commentsCount  Int       @map("comments_count")
+  // Additional fields...
+}
+
+// Followers Table
+model Follower {
+  id             Int       @id @default(autoincrement())
+  userID         Int       @map("user_id")
+  followerUserID Int      @map("follower_user_id")
+  timestamp      DateTime
+  // Additional fields...
+}
+
+// Tags Table
+model Tag {
+  id             Int       @id @default(autoincrement())
+  tagName        String    @map("tag_name")
+  // Additional fields...
+}
+
+// Comments Table
+model Comment {
+  id             Int       @id @default(autoincrement())
+  postID         Int       @map("post_id")
+  userID         Int       @map("user_id")
+  text           String
+  timestamp      DateTime
+  // Additional fields...
+}
+
+// SearchHistory Table
+model SearchHistory {
+  id             Int       @id @default(autoincrement())
+  userID         Int       @map("user_id")
+  searchQuery    String    @map("search_query")
+  timestamp      DateTime
+  // Additional fields...
+}
