@@ -13,19 +13,19 @@ datasource db {
 // User Table
 model User {
   id             Int       @id @default(autoincrement())
-  companyID      Int       @map("company_id")
-  departmentID   Int       @map("department_id")
-  role           String
-  username       String
-  password       String
-  email          String    @unique
-  profileImage   String    @map("profile_image")
-  contactNumber  String    @map("contact_number")
-  dateOfBirth    DateTime  @map("date_of_birth")
-  address        String
-  joiningDate    DateTime  @map("joining_date")
-  lastLogin      DateTime  @map("last_login")
-  status         String
+  companyID      Int?       @map("company_id")
+  departmentID   Int?       @map("department_id")
+  role           String?
+  username       String?
+  password       String?
+  email          String?   @unique
+  profileImage   String?    @map("profile_image")
+  contactNumber  String?    @map("contact_number")
+  dateOfBirth    DateTime?  @map("date_of_birth")
+  address        String?
+  joiningDate    DateTime?  @map("joining_date")
+  lastLogin      DateTime?  @map("last_login")
+  status         String?
   // Additional fields...
 }
 
