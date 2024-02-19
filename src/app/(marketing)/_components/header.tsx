@@ -1,24 +1,29 @@
-import { createUser } from "@/actions/server-action";
-import { SignInButton, UserButton, auth, clerkClient } from "@clerk/nextjs";
-import { Button } from "antd";
-import React from "react";
+import { createUser } from "@/actions/user-action";
+import { SignInButton, UserButton } from "@clerk/nextjs";
+import { Button, Spin } from "antd";
+import React, { useEffect } from "react";
+import { useUser } from "@clerk/nextjs";
+import { saveUser } from "@/redux/slices/userSlices";
+import { useDispatch, useSelector } from "react-redux";
+import { generateUser } from "@/helper/user-helper";
+import { LoadingOutlined } from "@ant-design/icons";
 
-const Header = async () => {
-  "use server";
-  const { userId } = await auth();
+const Header = () => {
+  const { isLoaded, isSignedIn, user } = useUser();
+  const newState = useSelector((state: any) => state.user);
+  const dispatch = useDispatch();
 
-  if (userId) {
-    const user = await clerkClient.users.getUser(userId);
-    const newUser = user.externalAccounts[0];
-    console.log(userId);
-    const { emailAddress, username } = newUser;
+  // console.log(newUser?.externalAccounts[0].emailAddress);
 
-    await createUser({
-      emailAddress: emailAddress,
-      username: username,
+  // console.log("redux state", newState);
+
+  useEffect(() => {
+    const data = generateUser(user);
+    data.then((data) => {
+      console.log("returning data", data);
+      dispatch({ type: "user", payload: data });
     });
-  }
-  // console.log("User: ", user);
+  }, [user]);
 
   return (
     <div className="flex items-center justify-between py-4 px-4 fixed w-full bg-gradient-to-r from-blue-900 to-blue-600 z-50">
@@ -26,9 +31,7 @@ const Header = async () => {
         <p>Logo</p>
       </div>
       <div className="flex items-center justify-between">
-        {/* {isLoaded && <div>loading</div>} */}
-
-        {!userId && (
+        {!isSignedIn && (
           <div className="pr-8">
             <SignInButton mode="modal">
               <Button type="link">
@@ -41,7 +44,8 @@ const Header = async () => {
             </SignInButton>
           </div>
         )}
-        {userId && (
+
+        {isSignedIn && (
           <div className="flex pr-8 gap-3">
             <UserButton afterSignOutUrl="/" />
             <Button type="primary">Enter Social free</Button>

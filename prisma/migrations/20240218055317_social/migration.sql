@@ -5,6 +5,8 @@ CREATE TABLE "User" (
     "department_id" INTEGER,
     "role" TEXT,
     "username" TEXT,
+    "firstname" TEXT,
+    "lastname" TEXT,
     "password" TEXT,
     "email" TEXT,
     "profile_image" TEXT,
@@ -21,15 +23,15 @@ CREATE TABLE "User" (
 -- CreateTable
 CREATE TABLE "Company" (
     "id" SERIAL NOT NULL,
-    "name" TEXT NOT NULL,
-    "registration" TEXT NOT NULL,
-    "address" TEXT NOT NULL,
-    "industry_type" TEXT NOT NULL,
-    "company_size" TEXT NOT NULL,
-    "ceo_name" TEXT NOT NULL,
-    "contact_email" TEXT NOT NULL,
-    "contact_number" TEXT NOT NULL,
-    "website_url" TEXT NOT NULL,
+    "name" TEXT,
+    "registration" TEXT,
+    "address" TEXT,
+    "industry_type" TEXT,
+    "company_size" TEXT,
+    "ceo_name" TEXT,
+    "contact_email" TEXT,
+    "contact_number" TEXT,
+    "website_url" TEXT,
 
     CONSTRAINT "Company_pkey" PRIMARY KEY ("id")
 );

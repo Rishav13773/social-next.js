@@ -17,6 +17,8 @@ model User {
   departmentID   Int?       @map("department_id")
   role           String?
   username       String?
+  firstname      String?
+  lastname       String?
   password       String?
   email          String?   @unique
   profileImage   String?    @map("profile_image")
@@ -32,15 +34,15 @@ model User {
 // Company Table
 model Company {
   id             Int       @id @default(autoincrement())
-  name           String
-  registration   String
-  address        String
-  industryType   String    @map("industry_type")
-  companySize    String    @map("company_size")
-  ceoName        String    @map("ceo_name")
-  contactEmail   String    @map("contact_email")
-  contactNumber  String    @map("contact_number")
-  websiteURL     String    @map("website_url")
+  name           String?
+  registration   String?
+  address        String?
+  industryType   String?   @map("industry_type")
+  companySize    String?    @map("company_size")
+  ceoName        String?    @map("ceo_name")
+  contactEmail   String?    @map("contact_email")
+  contactNumber  String?    @map("contact_number")
+  websiteURL     String?    @map("website_url")
   // Additional fields...
 }
 
