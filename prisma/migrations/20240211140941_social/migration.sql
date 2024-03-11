@@ -1,19 +1,19 @@
 -- CreateTable
 CREATE TABLE "User" (
     "id" SERIAL NOT NULL,
-    "company_id" INTEGER NOT NULL,
-    "department_id" INTEGER NOT NULL,
-    "role" TEXT NOT NULL,
-    "username" TEXT NOT NULL,
-    "password" TEXT NOT NULL,
-    "email" TEXT NOT NULL,
-    "profile_image" TEXT NOT NULL,
-    "contact_number" TEXT NOT NULL,
-    "date_of_birth" TIMESTAMP(3) NOT NULL,
-    "address" TEXT NOT NULL,
-    "joining_date" TIMESTAMP(3) NOT NULL,
-    "last_login" TIMESTAMP(3) NOT NULL,
-    "status" TEXT NOT NULL,
+    "company_id" INTEGER,
+    "department_id" INTEGER,
+    "role" TEXT,
+    "username" TEXT,
+    "password" TEXT,
+    "email" TEXT,
+    "profile_image" TEXT,
+    "contact_number" TEXT,
+    "date_of_birth" TIMESTAMP(3),
+    "address" TEXT,
+    "joining_date" TIMESTAMP(3),
+    "last_login" TIMESTAMP(3),
+    "status" TEXT,
 
     CONSTRAINT "User_pkey" PRIMARY KEY ("id")
 );
