@@ -63,7 +63,7 @@ const items: ISidebarItem[] = [
   },
   {
     name: "Profile",
-    path: "/profile",
+    path: "/profiles",
     icon: SquareUserRound,
   },
   {

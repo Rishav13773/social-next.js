@@ -23,7 +23,7 @@ export default function RootLayout({
             <div className="flex h-screen w-[20%]">
               <SideBar />
             </div>
-            <div className="flex w-[50%] items-center bg-blue-400">{children}</div>
+            <div className="flex w-[50%]">{children}</div>
             <div className="flex w-[30%] bg-green-400">
               <QuickAccess />
             </div>
